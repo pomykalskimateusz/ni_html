@@ -19,12 +19,15 @@ class NavigationBar {
                             <a class="nav-link" href="menu.php">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="order.php">Zamów</a>
+                            <a class="nav-link" href="reservation.php">Zarezerwuj</a>
                         </li>
                         <?php
                             include_once('service/AuthenticationService.php');
                             if($isLogged == True) {
                                 ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="reservationList.php">Moje rezerwacje</a>
+                                </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="service/LogoutService.php">Wyloguj</a>
                                     </li>

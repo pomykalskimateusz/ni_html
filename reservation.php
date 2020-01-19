@@ -22,12 +22,12 @@
     <h1>---</h1>
     <?php
       include_once('components/NavigationBar.php');
-      include_once('components/OrderPage.php');
+      include_once('components/ReservationPage.php');
      
       session_start();
       if(isset($_SESSION["authentication_data"])) {
         NavigationBar::content(True);
-        $content=OrderPage::content();
+        $content=ReservationPage::content();
       } else {
         header('Location: authentication.php');
       }

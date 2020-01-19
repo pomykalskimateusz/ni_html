@@ -43,7 +43,7 @@
                         $content = "Niepoprawne dane";
                       }
                       else {
-                        header('Location: order.php');
+                        header('Location: reservation.php');
                       }
                     } break;
                     case "Zarejestruj": {
@@ -56,7 +56,7 @@
                                 $content = LoginForm::content();
                                 $content = "Cos poszlo nie tak";
                             } else {
-                                header('Location: order.php');
+                                header('Location: reservation.php');
                             }
                         } else {
                             $content = RegistrationForm::content();

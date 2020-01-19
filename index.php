@@ -22,7 +22,12 @@
 		include_once('components/NavigationBar.php');
 		include_once('components/MainPage.php');
 		
-		NavigationBar::content(true);
+		session_start();
+		if(isset($_SESSION["authentication_data"])) {
+		  NavigationBar::content(True);
+		} else {
+			NavigationBar::content(False);
+		}
 		MainPage::content();
 	?>
 	<footer style="background: white;">

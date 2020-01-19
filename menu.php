@@ -19,7 +19,12 @@
       include_once('components/NavigationBar.php');
       include_once('components/MenuPage.php');
 
-      NavigationBar::content(True);
+      session_start();
+      if(isset($_SESSION["authentication_data"])) {
+        NavigationBar::content(True);
+      } else {
+        NavigationBar::content(False);
+      }
       MenuPage::content();
     ?>
     <footer style="background: white;">
