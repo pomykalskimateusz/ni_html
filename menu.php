@@ -19,11 +19,8 @@
       include_once('components/NavigationBar.php');
       include_once('components/MenuPage.php');
 
-      $navigationBar = new NavigationBar();
-      $menuPage = new MenuPage();
-
-      $navigationBar->content();
-      $menuPage->content();
+      NavigationBar::content(True);
+      MenuPage::content();
     ?>
     <footer style="background: white;">
 		  <p>Wszystkie prawa zastrzeżone.</p>

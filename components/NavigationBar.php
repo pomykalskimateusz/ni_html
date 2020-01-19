@@ -1,8 +1,6 @@
 <?php
 class NavigationBar {
-    function __construct() {}
-
-    function content() {
+    static function content($isLogged) {
         ?>
             <header>
                 <nav class="navbar navbar-expand-sm bg-dark navbar-light fixed-top">
@@ -23,6 +21,16 @@ class NavigationBar {
                         <li class="nav-item">
                             <a class="nav-link" href="order.php">Zamów</a>
                         </li>
+                        <?php
+                            include_once('service/AuthenticationService.php');
+                            if($isLogged == True) {
+                                ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="service/LogoutService.php">Wyloguj</a>
+                                    </li>
+                                <?php    
+                            }
+                        ?>
                         </ul>
                     </div>
                 </nav>

@@ -1,9 +1,7 @@
 <?php
 
 class MainPage {
-    function __construct() {}
-
-    function content() {
+    static function content() {
         ?>
             <h3>---</h3>
             <article>

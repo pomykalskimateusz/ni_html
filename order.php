@@ -19,15 +19,18 @@
 
 <body>
   <div class="container-fluid">
+    <h1>---</h1>
     <?php
       include_once('components/NavigationBar.php');
       include_once('components/OrderPage.php');
-
-      $navigationBar = new NavigationBar();
-      $orderPage = new OrderPage();
-
-      $navigationBar->content();
-      $orderPage->content();
+     
+      session_start();
+      if(isset($_SESSION["authentication_data"])) {
+        NavigationBar::content(True);
+        $content=OrderPage::content();
+      } else {
+        header('Location: authentication.php');
+      }
     ?>
     <footer style="background: white;">
 		  <p>Wszystkie prawa zastrzeżone.</p>

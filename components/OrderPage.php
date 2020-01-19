@@ -1,10 +1,8 @@
 <?php
 class OrderPage {
-    function __construct() {}
-
-    function content() {
+    static function content() {
         ?>
-            <h1>---</h1>
+            <h3>---</h3>
             <section>
                 <article>
                     <form onsubmit="return check()">
