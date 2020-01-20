@@ -3,7 +3,6 @@ class Database
 {
 	private $mysqli;
 
-
 	public function __construct()
 	{
 		$this->mysqli = new mysqli("172.17.0.2:3306", "root", "admin", "restauracja");

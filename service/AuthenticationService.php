@@ -1,33 +1,33 @@
 <?php
-include_once('model/AuthenticationData.php');
+include_once('model/User.php');
 
 class AuthenticationService {
-    private $authenticationTableName = "authentication";
+    private $tableName = "users";
 
     function __construct() {}
 
     function authenticate($username, $password, $database) {
-        $query = "select * from $this->authenticationTableName where username='$username' and password='$password'";
-        $authenticationData = null;
+        $query = "select * from $this->tableName where username='$username' and password='$password'";
+        $user = null;
 
         if(($username!=="") && ($password!=="")) {
             if ($result = $database->getMysqli()->query($query)) {
                 $count = $result->num_rows; 
                 if ($count == 1) {
                     session_start();
-                    $authenticationData = new AuthenticationData($username, $password);
-                    $authenticationData->setIsLogged(true);
-                    $_SESSION["authentication_data"] = serialize($authenticationData);
+                    $user = new User($username, $username, $username, $password);
+                    $user->setIsLogged(true);
+                    $_SESSION["authenticated_user"] = serialize($user);
                 }
                 $result->close();
             }
         }
 
-        return $authenticationData;
+        return $user;
     }
 
     function createAccount($username, $password, $database) {
-        $query = "INSERT INTO $this->authenticationTableName VALUES('$username', '$password')";
+        $query = "INSERT INTO $this->tableName VALUES('$username', '$password')";
         return $database->insert($query);
     }
 

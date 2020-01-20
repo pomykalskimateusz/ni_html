@@ -23,10 +23,15 @@
     <?php
       include_once('components/NavigationBar.php');
       include_once('components/ReservationListPage.php');
+      include_once('service/Database.php');
+      include_once('service/ReservationService.php');
      
       session_start();
-      if(isset($_SESSION["authentication_data"])) {
+      if(isset($_SESSION["authenticated_user"])) {
         NavigationBar::content(True);
+        // $database = new Database();
+        // $reservationService = new ReservationService();
+        // $reservations = $reservationService->fetchReservationsByUsername("admin");
         $content=ReservationListPage::content(array("Rezerwacja 1", "Rezerwacja 2"));
       } else {
         header('Location: authentication.php');
