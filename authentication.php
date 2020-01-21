@@ -47,9 +47,11 @@
                       }
                     } break;
                     case "Zarejestruj": {
+                        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_MAGIC_QUOTES);
+                        $surename = filter_input(INPUT_POST, "surename", FILTER_SANITIZE_MAGIC_QUOTES);
                         $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_MAGIC_QUOTES);
                         $password = hash("sha256", filter_input(INPUT_POST,"password", FILTER_SANITIZE_MAGIC_QUOTES));
-                        $result = $authenticationService->createAccount($username, $password, $database);
+                        $result = $authenticationService->createAccount($name, $surename, $username, $password, $database);
                         if(result == True) {
                             $authenticationResult = $authenticationService->authenticate($username, $password, $database);
                             if(authenticationResult == null) {

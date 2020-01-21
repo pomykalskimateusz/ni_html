@@ -26,8 +26,8 @@ class AuthenticationService {
         return $user;
     }
 
-    function createAccount($username, $password, $database) {
-        $query = "INSERT INTO $this->tableName VALUES('$username', '$password')";
+    function createAccount($name, $surename, $username, $password, $database) {
+        $query = "INSERT INTO $this->tableName VALUES('$name', '$surename', '$username', '$password')";
         return $database->insert($query);
     }
 
