@@ -40,29 +40,34 @@
                       $result = $authenticationService->authenticate($username, $password, $database);
                       if($result == null) {
                         $content = LoginForm::content();
-                        $content = "Niepoprawne dane";
+                        $content = "<span style='font-size: 20px; color: red'>Nie poprawne dane logowania</span>";
                       }
                       else {
                         header('Location: reservation.php');
                       }
                     } break;
                     case "Zarejestruj": {
-                        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_MAGIC_QUOTES);
-                        $surename = filter_input(INPUT_POST, "surename", FILTER_SANITIZE_MAGIC_QUOTES);
-                        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_MAGIC_QUOTES);
-                        $password = hash("sha256", filter_input(INPUT_POST,"password", FILTER_SANITIZE_MAGIC_QUOTES));
-                        $result = $authenticationService->createAccount($name, $surename, $username, $password, $database);
-                        if(result == True) {
-                            $authenticationResult = $authenticationService->authenticate($username, $password, $database);
-                            if(authenticationResult == null) {
-                                $content = LoginForm::content();
-                                $content = "Cos poszlo nie tak";
+                        if(RegistrationForm::isValid()) {
+                            $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_MAGIC_QUOTES);
+                            $surename = filter_input(INPUT_POST, "surename", FILTER_SANITIZE_MAGIC_QUOTES);
+                            $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_MAGIC_QUOTES);
+                            $password = hash("sha256", filter_input(INPUT_POST,"password", FILTER_SANITIZE_MAGIC_QUOTES));
+                            $result = $authenticationService->createAccount($name, $surename, $username, $password, $database);
+                            if(result == True) {
+                                $authenticationResult = $authenticationService->authenticate($username, $password, $database);
+                                if(authenticationResult == null) {
+                                    $content = LoginForm::content();
+                                    $content = "Cos poszlo nie tak";
+                                } else {
+                                    header('Location: reservation.php');
+                                }
                             } else {
-                                header('Location: reservation.php');
+                                $content = RegistrationForm::content();
+                                $content = "Nie udalo sie zarejestrowac";
                             }
                         } else {
                             $content = RegistrationForm::content();
-                            $content = "Nie udalo sie zarejestrowac";
+                            $content = "<span style='font-size: 20px; color: red'>Nie poprawne dane w formularzu</span>";
                         }
                     } break;
                     case "Nowe konto": {

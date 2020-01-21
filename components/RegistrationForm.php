@@ -12,6 +12,33 @@
                 <input class="btn btn-block my-4" type="submit" name="submit" value="Zarejestruj">  
              </form>
             <?php
-         } 
+         }
+         
+         static function isValid() { 
+            $args = [
+                'name'      => ['filter' => FILTER_VALIDATE_REGEXP,
+                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']],
+                'surename'  => ['filter' => FILTER_VALIDATE_REGEXP,
+                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']],
+                'username'  => ['filter' => FILTER_VALIDATE_REGEXP,
+                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']],
+                'password'  => ['filter' => FILTER_VALIDATE_REGEXP,
+                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']]
+            ];
+    
+            $data = filter_input_array(INPUT_POST, $args);
+   
+           $errors = "";
+            foreach ($data as $key => $val) {
+                if ($val === false or $val === NULL) {
+                    $errors .= $key . " ";
+                }
+            }
+            if ($errors === "") {
+                return True;
+            } else {
+                return False;
+            }
+         }
     }
 ?>
