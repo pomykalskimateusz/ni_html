@@ -17,13 +17,13 @@
          static function isValid() { 
             $args = [
                 'name'      => ['filter' => FILTER_VALIDATE_REGEXP,
-                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']],
+                                'options' => ['regexp' => '/^[A-Za-z]{1,30}$/']],
                 'surename'  => ['filter' => FILTER_VALIDATE_REGEXP,
-                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']],
+                                'options' => ['regexp' => '/^[A-Za-z]{1,30}$/']],
                 'username'  => ['filter' => FILTER_VALIDATE_REGEXP,
-                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']],
+                                'options' => ['regexp' => '/^[a-zA-Z0-9._]{1,30}$/']],
                 'password'  => ['filter' => FILTER_VALIDATE_REGEXP,
-                                'options' => ['regexp' => '/^[A-Za-z]{1,25}$/']]
+                                'options' => ['regexp' => '/^[a-zA-Z0-9._]{6,30}$/']]
             ];
     
             $data = filter_input_array(INPUT_POST, $args);
